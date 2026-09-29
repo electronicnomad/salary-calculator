@@ -1,5 +1,6 @@
 import { calculatePayrollFromGross, calculatePayrollFromNet } from './payroll.js';
 import { MONTHS_PER_YEAR } from './rates2026.js';
+import { validationError } from './validation.js';
 
 const DEDUCTION_LABELS = {
   nationalPension: '국민연금',
@@ -42,20 +43,6 @@ function readForm() {
       children: Number(data.get('children')),
     },
   };
-}
-
-function validationError({ amount, household }) {
-  const { dependents, children } = household;
-  if (amount <= 0) {
-    return '금액을 입력하세요.';
-  }
-  if (!Number.isInteger(dependents) || dependents < 1) {
-    return '부양가족 수는 본인을 포함해 1명 이상이어야 합니다.';
-  }
-  if (!Number.isInteger(children) || children < 0 || children >= dependents) {
-    return '자녀 수는 0명 이상, 부양가족 수보다 적어야 합니다.';
-  }
-  return '';
 }
 
 function toMonthly(amount, period) {
