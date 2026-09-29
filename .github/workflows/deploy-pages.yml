@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: 20
       - run: npm test
-      # 빌드 과정이 없는 정적 사이트라 저장소를 그대로 올린다 (경로는 모두 상대 경로)
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
