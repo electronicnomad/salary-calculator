@@ -1,0 +1,11 @@
+{
+  "name": "salary-calculator",
+  "version": "1.0.0",
+  "description": "한국 세법 기준 연봉/월급 실수령액 계산기",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node --test"
+  }
+}

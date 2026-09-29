@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9199867433920998"
+     crossorigin="anonymous"></script>
+  <title>연봉 실수령액 계산기</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="layout">
+    <header class="page-header">
+      <h1>연봉 실수령액 계산기</h1>
+      <p>2026년 세법과 4대보험 요율 기준</p>
+    </header>
+
+    <form id="salary-form" class="panel" novalidate>
+      <fieldset class="segmented">
+        <legend>급여 단위</legend>
+        <label><input type="radio" name="period" value="annual" checked> 연봉</label>
+        <label><input type="radio" name="period" value="monthly"> 월급</label>
+      </fieldset>
+
+      <fieldset class="segmented">
+        <legend>입력 금액 기준</legend>
+        <label><input type="radio" name="basis" value="gross" checked> 세전</label>
+        <label><input type="radio" name="basis" value="net"> 세후</label>
+      </fieldset>
+
+      <label class="field">
+        <span id="amount-label">세전 연봉</span>
+        <div class="money-input">
+          <input id="amount" name="amount" type="text" inputmode="numeric" value="50,000,000" autocomplete="off">
+          <span>원</span>
+        </div>
+      </label>
+
+      <label class="field">
+        <span>월 비과세액 (식대 등)</span>
+        <div class="money-input">
+          <input id="non-taxable" name="nonTaxable" type="text" inputmode="numeric" value="200,000" autocomplete="off">
+          <span>원</span>
+        </div>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          <span>부양가족 수 (본인 포함)</span>
+          <input id="dependents" name="dependents" type="number" min="1" max="20" value="1">
+        </label>
+        <label class="field">
+          <span>8세 이상 20세 이하 자녀</span>
+          <input id="children" name="children" type="number" min="0" max="19" value="0">
+        </label>
+      </div>
+
+      <p id="form-error" class="form-error" role="alert"></p>
+    </form>
+
+    <section class="panel results" aria-live="polite">
+      <div class="summary">
+        <div class="summary-item">
+          <span>계약 연봉</span>
+          <strong id="contract-annual">-</strong>
+        </div>
+        <div class="summary-item highlight">
+          <span>월 실수령액</span>
+          <strong id="net-monthly">-</strong>
+        </div>
+        <div class="summary-item highlight">
+          <span>연 실수령액</span>
+          <strong id="net-annual">-</strong>
+        </div>
+        <div class="summary-item">
+          <span>실수령 비율</span>
+          <strong id="net-ratio">-</strong>
+        </div>
+      </div>
+
+      <div class="ratio-bar" aria-hidden="true">
+        <div id="ratio-bar-net" class="ratio-bar-net"></div>
+      </div>
+
+      <table class="breakdown">
+        <thead>
+          <tr><th>항목</th><th>월</th><th>연</th></tr>
+        </thead>
+        <tbody id="breakdown-body"></tbody>
+      </table>
+
+      <ul class="notes">
+        <li>국민연금 4.75%(기준소득월액 41만~659만원), 건강보험 3.595%, 장기요양보험 건강보험료의 13.14%, 고용보험 0.9% (근로자 부담분)</li>
+        <li>소득세는 연말정산 기준 추정치입니다. 근로소득공제, 인적공제, 보험료공제, 근로소득세액공제, 자녀세액공제만 반영하며 신용카드, 의료비 등 개인별 공제는 제외합니다. 매월 원천징수되는 간이세액표 금액과 다를 수 있습니다.</li>
+        <li>계약 연봉은 퇴직금 별도, 12개월 균등 지급을 가정합니다.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
